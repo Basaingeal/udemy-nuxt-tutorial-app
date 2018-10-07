@@ -3,7 +3,7 @@
     <PostPreview
       id="1"
       title="Hello there!"
-      preview-text="this is my first post!"
+      preview-text="This is my first post!"
       thumbnail="https://www.extremetech.com/wp-content/uploads/2016/11/Intel-Chipset-640x353.jpg"/>
     <PostPreview
       id="2"
