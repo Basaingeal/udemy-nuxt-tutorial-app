@@ -21,7 +21,7 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      .nuxt
+      .nuxt/*
       static
       nuxt.config.js
       package.json
