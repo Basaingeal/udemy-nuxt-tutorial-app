@@ -6,7 +6,7 @@
         udemy-nuxt-tutorial-app
       </h1>
       <h2 class="subtitle">
-        A Nuxt.js app built with the Udemy Nuxt tutorial
+        A Nuxt.js app built with the Udemy Nuxt tutorial Git Build
       </h2>
       <div class="links">
         <a
