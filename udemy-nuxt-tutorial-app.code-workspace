@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.formatOnSave": false,
+		"css.validate": false,
+		"less.validate": false,
+		"scss.validate": false,
+		"stylelint.enable": true,
+		"eslint.autoFixOnSave": true,
+		"eslint.validate": [
+		  {
+			"language": "vue",
+			"autoFix": true
+		  },
+		  {
+			"language": "html",
+			"autoFix": true
+		  },
+		  {
+			"language": "javascript",
+			"autoFix": true
+		  }
+		]
+	}
+}
