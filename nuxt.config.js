@@ -15,7 +15,10 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans' }
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Open+Sans'
+      }
     ]
   },
 
@@ -27,20 +30,17 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: [],
 
   /*
   ** Nuxt.js modules
   */
-  modules: [
-  ],
+  modules: [],
 
   /*
   ** Build configuration
