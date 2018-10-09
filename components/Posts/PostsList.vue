@@ -1,23 +1,13 @@
 <template>
   <section class="posts-list">
     <PostPreview
-      id="1"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
       :is-admin="isAdmin"
-      title="Hello there!"
-      preview-text="This is my first post!"
-      thumbnail="https://www.extremetech.com/wp-content/uploads/2016/11/Intel-Chipset-640x353.jpg"/>
-    <PostPreview
-      id="2"
-      :is-admin="isAdmin"
-      title="Hello there - the second time!"
-      preview-text="This is my second post!"
-      thumbnail="https://www.extremetech.com/wp-content/uploads/2016/11/Intel-Chipset-640x353.jpg"/>
-    <PostPreview
-      id="3"
-      :is-admin="isAdmin"
-      title="Hi!"
-      preview-text="This is my third post!"
-      thumbnail="https://www.extremetech.com/wp-content/uploads/2016/11/Intel-Chipset-640x353.jpg"/>
+      :title="post.title"
+      :preview-text="post.previewText"
+      :thumbnail="post.thumbnail"/>
   </section>
 </template>
 
@@ -33,6 +23,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    posts: {
+      type: Array,
+      required: true
     }
   }
 }
