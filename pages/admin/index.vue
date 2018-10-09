@@ -18,7 +18,8 @@ export default {
   components: {
     PostsList,
     AppButton
-  }
+  },
+  layout: 'admin'
 }
 </script>
 
