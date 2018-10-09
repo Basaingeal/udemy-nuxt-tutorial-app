@@ -18,7 +18,10 @@ export default {
   methods: {
     async onSubmitted (postData) {
       try {
-        const response = await axios.post('https://nuxt-blog-b8db6.firebaseio.com/posts.json', postData)
+        const response = await axios.post('https://nuxt-blog-b8db6.firebaseio.com/posts.json', {
+          ...postData,
+          updatedDate: new Date()
+        })
         console.log(response)
       } catch (e) {
         console.log(e)
