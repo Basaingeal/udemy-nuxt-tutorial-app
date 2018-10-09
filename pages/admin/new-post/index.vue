@@ -23,6 +23,7 @@ export default {
           updatedDate: new Date()
         })
         console.log(response)
+        this.$router.push('/admin')
       } catch (e) {
         console.log(e)
       }
