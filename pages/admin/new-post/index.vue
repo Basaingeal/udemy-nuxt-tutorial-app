@@ -14,6 +14,7 @@ export default {
     AdminPostForm
   },
   layout: 'admin',
+  middleware: 'auth',
   methods: {
     async onSubmitted (postData) {
       await this.$store.dispatch('addPost', postData)
