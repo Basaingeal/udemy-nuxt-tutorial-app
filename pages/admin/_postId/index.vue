@@ -21,7 +21,7 @@ export default {
     try {
       const response = await axios.get(`https://nuxt-blog-b8db6.firebaseio.com/posts/${context.params.postId}.json`)
       return {
-        loadedPost: response.data
+        loadedPost: { ...response.data, id: context.params.postId }
       }
     } catch (e) {
       context.error(e)
@@ -29,13 +29,8 @@ export default {
   },
   methods: {
     async onSubmitted (editedPost) {
-      try {
-        const response = await axios.put(`https://nuxt-blog-b8db6.firebaseio.com/posts/${this.$route.params.postId}.json`, editedPost)
-        console.log(response)
-        this.$router.push('/admin')
-      } catch (e) {
-        console.log(e)
-      }
+      await this.$store.dispatch('editPost', editedPost)
+      this.$router.push('/admin')
     }
   }
 }

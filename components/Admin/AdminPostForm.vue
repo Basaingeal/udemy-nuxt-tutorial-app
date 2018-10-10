@@ -41,7 +41,8 @@ export default {
         title: '',
         tumbnailLink: '',
         content: '',
-        previewText: ''
+        previewText: '',
+        id: ''
       }
     }
   },
