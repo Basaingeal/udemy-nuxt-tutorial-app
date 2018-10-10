@@ -1,4 +1,4 @@
-const pkg = require('./package')
+// const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
@@ -25,7 +25,11 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#880000', height: '16px', duration: 5000 },
+  loadingIndicator: {
+    name: 'circle',
+    color: '#800000'
+  },
 
   /*
   ** Global CSS
