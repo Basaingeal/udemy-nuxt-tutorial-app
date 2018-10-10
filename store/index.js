@@ -45,7 +45,7 @@ const createStore = () => {
           updatedDate: new Date()
         }
         try {
-          const data = await this.$axios.$post(`/posts.json`, createdPost)
+          const data = await this.$axios.$post(`/posts.json?auth=${vuexContext.state.token}`, createdPost)
           vuexContext.commit('addPost', { ...createdPost,
             id: data.name
           })
@@ -55,7 +55,7 @@ const createStore = () => {
       },
       async editPost (vuexContext, editedPost) {
         try {
-          await this.$axios.put(`/posts/${editedPost.id}.json`, editedPost)
+          await this.$axios.put(`/posts/${editedPost.id}.json?auth=${vuexContext.state.token}`, editedPost)
           vuexContext.commit('editPost', editedPost)
         } catch (e) {
           console.log(e)
