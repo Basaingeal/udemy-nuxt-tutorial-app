@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedPosts: []
+      loadedPosts: [],
+      token: null
     },
     mutations: {
       setPosts (state, posts) {
@@ -15,6 +16,9 @@ const createStore = () => {
       editPost (state, editedPost) {
         const postIndex = state.loadedPosts.findIndex(post => post.id === editedPost.id)
         state.loadedPosts[postIndex] = editedPost
+      },
+      setToken (state, token) {
+        state.token = token
       }
     },
     actions: {
@@ -23,7 +27,9 @@ const createStore = () => {
           const data = await context.app.$axios.$get(`${process.env.baseUrl}/posts.json`)
           const postsArray = []
           for (const key in data) {
-            postsArray.push({ ...data[key], id: key })
+            postsArray.push({ ...data[key],
+              id: key
+            })
           }
           vuexContext.commit('setPosts', postsArray)
         } catch (e) {
@@ -40,7 +46,9 @@ const createStore = () => {
         }
         try {
           const data = await this.$axios.$post(`/posts.json`, createdPost)
-          vuexContext.commit('addPost', { ...createdPost, id: data.name })
+          vuexContext.commit('addPost', { ...createdPost,
+            id: data.name
+          })
         } catch (e) {
           console.log(e)
         }
@@ -51,6 +59,27 @@ const createStore = () => {
           vuexContext.commit('editPost', editedPost)
         } catch (e) {
           console.log(e)
+        }
+      },
+      async authenticateUser (vuexContext, authData) {
+        let authUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${
+          process.env.fbAPIKey
+        }`
+        if (!authData.isLogin) {
+          authUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${
+            process.env.fbAPIKey
+          }`
+        }
+
+        try {
+          const responseData = await this.$axios.$post(authUrl, {
+            email: authData.email,
+            password: authData.password,
+            returnSecureToken: true
+          })
+          vuexContext.commit('setToken', responseData.idToken)
+        } catch (error) {
+          console.log(error)
         }
       }
     },
