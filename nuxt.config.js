@@ -50,12 +50,41 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
 
   axios: {
     baseURL: process.env.BASE_URL || 'https://nuxt-blog-b8db6.firebaseio.com',
     credentials: false
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyA1CztR2L0iGNYVgkFkwiFAu-ckkawfwqc',
+            method: 'post',
+            propertyName: 'idToken'
+          },
+          user: {
+            url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=AIzaSyA1CztR2L0iGNYVgkFkwiFAu-ckkawfwqc',
+            method: 'post',
+            propertyName: undefined
+          },
+          logout: false
+        }
+      }
+      // firebase: {
+      //   _scheme: '~/services/firebase-auth.js',
+      //   apiKey: 'AIzaSyA1CztR2L0iGNYVgkFkwiFAu-ckkawfwqc',
+      //   projectId: 'nuxt-blog-b8db6'
+      // }
+    },
+    redirect: {
+      login: '/admin/auth'
+    }
   },
 
   /*

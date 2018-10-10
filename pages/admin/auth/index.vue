@@ -30,15 +30,21 @@ export default {
       password: ''
     }
   },
+  computed: {
+    loginData () {
+      return { email: this.email, password: this.password }
+    }
+  },
   methods: {
     async onSubmit () {
-      await this.$store.dispatch('authenticateUser', {
-        isLogin: this.isLogin,
-        email: this.email,
-        password: this.password
-      })
-
-      this.$router.push('/admin')
+      try {
+        const response = await this.$auth.loginWith('local', {
+          data: this.loginData
+        })
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.5.2",
     "@nuxtjs/axios": "^5.3.3",
     "cross-env": "^5.2.0",
     "js-cookie": "^2.2.0",
