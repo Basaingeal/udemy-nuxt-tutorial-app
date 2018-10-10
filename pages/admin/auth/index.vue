@@ -1,9 +1,13 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form>
-        <AppControlInput type="email">E-Mail Address</AppControlInput>
-        <AppControlInput type="password">Password</AppControlInput>
+      <form @submit.prevent="onSubmit">
+        <AppControlInput
+          v-model="email"
+          type="email">E-Mail Address</AppControlInput>
+        <AppControlInput
+          v-model="password"
+          type="password">Password</AppControlInput>
         <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
         <AppButton
           type="button"
@@ -16,13 +20,33 @@
 </template>
 
 <script>
-
 export default {
   name: 'AdminAuthPage',
   layout: 'admin',
   data () {
     return {
-      isLogin: true
+      isLogin: true,
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async onSubmit () {
+      try {
+        const responseData = await this.$axios.$post(
+          `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${
+            process.env.fbAPIKey
+          }`,
+          {
+            email: this.email,
+            password: this.password,
+            returnSecureToken: true
+          }
+        )
+        console.log(responseData)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
