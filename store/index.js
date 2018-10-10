@@ -20,10 +20,10 @@ const createStore = () => {
     actions: {
       async nuxtServerInit (vuexContext, context) {
         try {
-          const response = await context.app.$axios.$get(`${process.env.baseUrl}/posts.json`)
+          const data = await context.app.$axios.$get(`${process.env.baseUrl}/posts.json`)
           const postsArray = []
-          for (const key in response) {
-            postsArray.push({ ...response[key], id: key })
+          for (const key in data) {
+            postsArray.push({ ...data[key], id: key })
           }
           vuexContext.commit('setPosts', postsArray)
         } catch (e) {
@@ -39,8 +39,8 @@ const createStore = () => {
           updatedDate: new Date()
         }
         try {
-          const response = await this.$axios.$post(`/posts.json`, createdPost)
-          vuexContext.commit('addPost', { ...createdPost, id: response.name })
+          const data = await this.$axios.$post(`/posts.json`, createdPost)
+          vuexContext.commit('addPost', { ...createdPost, id: data.name })
         } catch (e) {
           console.log(e)
         }
