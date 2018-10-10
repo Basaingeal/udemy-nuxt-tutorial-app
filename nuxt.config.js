@@ -79,11 +79,16 @@ module.exports = {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-b8db6.firebaseio.com'
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-b8db6.firebaseio.com',
+    fbAPIKey: 'AIzaSyA1CztR2L0iGNYVgkFkwiFAu-ckkawfwqc'
   },
 
   transition: {
     name: 'fade',
     mode: 'out-in'
+  },
+
+  router: {
+    middleware: 'log'
   }
 }
