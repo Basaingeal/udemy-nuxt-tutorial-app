@@ -81,6 +81,8 @@ const createStore = () => {
             returnSecureToken: true
           })
           vuexContext.commit('setToken', responseData.idToken)
+          window.localStorage.setItem('token', responseData.idToken)
+          window.localStorage.setItem('tokenExpiration', new Date().getTime() + responseData.expiresIn * 1000)
           vuexContext.dispatch('setLogoutTime', responseData.expiresIn * 1000)
         } catch (error) {
           console.log(error)
@@ -90,6 +92,17 @@ const createStore = () => {
         setTimeout(() => {
           vuexContext.commit('clearToken')
         }, duration)
+      },
+      initAuth (vuexContext) {
+        const token = window.localStorage.getItem('token')
+        const expirationDate = window.localStorage.getItem('tokenExpiration')
+
+        if (new Date().getTime() > +expirationDate || !token) {
+          return
+        }
+
+        vuexContext.commit('setToken', token)
+        vuexContext.dispatch('setLogoutTime', +expirationDate - new Date().getTime())
       }
     },
     getters: {

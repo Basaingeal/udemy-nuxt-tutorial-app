@@ -14,7 +14,7 @@ export default {
     AdminPostForm
   },
   layout: 'admin',
-  middleware: 'auth',
+  middleware: ['check-auth', 'auth'],
   methods: {
     async onSubmitted (postData) {
       await this.$store.dispatch('addPost', postData)
