@@ -17,19 +17,17 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   async asyncData (context) {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    return {
-      loadedPost: {
-        id: 1,
-        title: `First Post - ID ${context.params.id}`,
-        previewText: 'This is our first post!',
-        author: 'Michael J. Currie',
-        updatedDate: new Date(),
-        content: 'Some dummy text that is not previewText',
-        thumbnail: 'https://d3atagt0rnqk7k.cloudfront.net/wp-content/uploads/2015/10/12000759/your-guide-to-the-perfect-spooky-halloween.jpg'
+    try {
+      const response = await axios.get(`https://nuxt-blog-b8db6.firebaseio.com/posts/${context.params.id}.json`)
+      return {
+        loadedPost: response.data
       }
+    } catch (e) {
+      context.error(e)
     }
   }
 }
