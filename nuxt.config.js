@@ -34,7 +34,9 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [],
+  css: [
+    '~assets/styles/main.css'
+  ],
 
   /*
   ** Plugins to load before mounting the App
@@ -65,7 +67,13 @@ module.exports = {
       }
     }
   },
+
   env: {
     baseUrl: process.env.BASE_URL || 'https://nuxt-blog-b8db6.firebaseio.com'
+  },
+
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
   }
 }
