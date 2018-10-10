@@ -22,7 +22,7 @@ import axios from 'axios'
 export default {
   async asyncData (context) {
     try {
-      const response = await axios.get(`https://nuxt-blog-b8db6.firebaseio.com/posts/${context.params.id}.json`)
+      const response = await axios.get(`${process.env.baseUrl}/posts/${context.params.id}.json`)
       return {
         loadedPost: response.data
       }

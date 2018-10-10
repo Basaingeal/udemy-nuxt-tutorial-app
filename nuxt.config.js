@@ -64,5 +64,8 @@ module.exports = {
         })
       }
     }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-b8db6.firebaseio.com'
   }
 }
